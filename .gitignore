@@ -6,6 +6,9 @@ node_modules/
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+#ignore old certificate generator folder
+cert to client for access restserver in10.120.6.55/
+
 # User-specific files
 *.rsuser
 *.suo
