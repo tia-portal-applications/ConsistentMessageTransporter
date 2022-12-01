@@ -1,0 +1,405 @@
+{
+  "adapters": [
+    {
+      "id": "ethernet",
+      "name": "Ethernet IP Connector",
+      "type": "simaticadapter",
+      "locked": true,
+      "active": false,
+      "isDefault": false,
+      "canBrowse": true,
+      "config": {
+        "brokerURL": "tcp://ie-databus:1883",
+        "username": "",
+        "password": "",
+        "browseURL": "ie/m/j/simatic/v1/eip1/dp"
+      }
+    },
+    {
+      "id": "modbus",
+      "name": "Modbus TCP Connector",
+      "type": "simaticadapter",
+      "locked": true,
+      "active": false,
+      "isDefault": false,
+      "canBrowse": true,
+      "config": {
+        "brokerURL": "tcp://ie-databus:1883",
+        "username": "",
+        "password": "",
+        "browseURL": "ie/m/j/simatic/v1/mbtcp1/dp"
+      }
+    },
+    {
+      "id": "profinet",
+      "name": "Profinet IO Connector",
+      "type": "simaticadapter",
+      "locked": true,
+      "active": false,
+      "isDefault": false,
+      "canBrowse": true,
+      "config": {
+        "brokerURL": "tcp://ie-databus:1883",
+        "username": "",
+        "password": "",
+        "browseURL": "ie/m/j/simatic/v1/pnhs1/dp/r"
+      }
+    },
+    {
+      "id": "hmiruntime",
+      "name": "HmiRuntime",
+      "type": "hmiruntime",
+      "locked": true,
+      "active": false,
+      "isDefault": false,
+      "canBrowse": false,
+      "config": {
+        "openPipePath": "/tmp/siemens/automation/HmiRuntime"
+      }
+    },
+    {
+      "id": "systeminfo",
+      "name": "System Info",
+      "type": "systeminfo",
+      "locked": true,
+      "active": false,
+      "isDefault": false,
+      "canBrowse": true,
+      "config": {}
+    },
+    {
+      "id": "simaticadapter",
+      "name": "SIMATIC S7 Connector",
+      "type": "simaticadapter",
+      "locked": true,
+      "active": true,
+      "isDefault": false,
+      "canBrowse": true,
+      "config": {
+        "brokerURL": "tcp://ie-databus:1883",
+        "username": "edge",
+        "password": "edge",
+        "browseURL": "ie/m/j/simatic/v1/s7c1/dp"
+      }
+    }
+  ],
+  "aspects": [
+    {
+      "aspectId": "44f043cf940049b98a562155f8b97015",
+      "aspectName": "Recipe_Aspect",
+      "assetId": "5a8bc69b1ebb47fb841ef163fb28fe3d",
+      "aspectTypeId": null
+    },
+    {
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectTypeId": null
+    }
+  ],
+  "assets": [
+    {
+      "assetId": "0",
+      "name": "edge",
+      "parentId": "",
+      "hasChildren": true,
+      "sortOrder": 0
+    },
+    {
+      "assetId": "5a8bc69b1ebb47fb841ef163fb28fe3d",
+      "name": "Asset_PLC_out",
+      "parentId": "0",
+      "hasChildren": false,
+      "sortOrder": 0
+    },
+    {
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "name": "Asset_PLC_in",
+      "parentId": "0",
+      "hasChildren": false,
+      "sortOrder": 1
+    }
+  ],
+  "dataRetentions": [
+    {
+      "sourceId": "0",
+      "sourceTypeId": "asset",
+      "settings": {
+        "timeSettings": {
+          "timeRange": {
+            "base": "day",
+            "factor": 30
+          }
+        }
+      }
+    }
+  ],
+  "variables": [
+    {
+      "variableId": "cd88c4f90eb144bc981b2704c75ae0df",
+      "variableName": "in_profileVacuumGradients",
+      "dataType": "Float",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_profileVacuumGradients::13::25"
+    },
+    {
+      "variableId": "d58ce425416846079b43c33de119adbd",
+      "variableName": "out_ack",
+      "dataType": "UInt32",
+      "assetId": "5a8bc69b1ebb47fb841ef163fb28fe3d",
+      "aspectId": "44f043cf940049b98a562155f8b97015",
+      "aspectName": "Recipe_Aspect",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::out_ack::13::7"
+    },
+    {
+      "variableId": "926f12fb87574274b319927a9a5a4b09",
+      "variableName": "out_currentState",
+      "dataType": "Int16",
+      "assetId": "5a8bc69b1ebb47fb841ef163fb28fe3d",
+      "aspectId": "44f043cf940049b98a562155f8b97015",
+      "aspectName": "Recipe_Aspect",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::out_currentState::13::16"
+    },
+    {
+      "variableId": "48cc762fb58e4c799552041c246aeda2",
+      "variableName": "out_hasTimeout",
+      "dataType": "Bool",
+      "assetId": "5a8bc69b1ebb47fb841ef163fb28fe3d",
+      "aspectId": "44f043cf940049b98a562155f8b97015",
+      "aspectName": "Recipe_Aspect",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::out_hasTimeout::13::14"
+    },
+    {
+      "variableId": "18da5ee02b9247b7b6d848c902310fa6",
+      "variableName": "out_executionGroupId",
+      "dataType": "String",
+      "assetId": "5a8bc69b1ebb47fb841ef163fb28fe3d",
+      "aspectId": "44f043cf940049b98a562155f8b97015",
+      "aspectName": "Recipe_Aspect",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::out_executionGroupId::13::20"
+    },
+    {
+      "variableId": "2747bdf8d5404f27a9aba56e6b0d38cf",
+      "variableName": "out_operationIds",
+      "dataType": "String",
+      "assetId": "5a8bc69b1ebb47fb841ef163fb28fe3d",
+      "aspectId": "44f043cf940049b98a562155f8b97015",
+      "aspectName": "Recipe_Aspect",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::out_operationIds::13::16"
+    },
+    {
+      "variableId": "f49a9276ab514658be3f33dc569bcf06",
+      "variableName": "out_previousState",
+      "dataType": "Int16",
+      "assetId": "5a8bc69b1ebb47fb841ef163fb28fe3d",
+      "aspectId": "44f043cf940049b98a562155f8b97015",
+      "aspectName": "Recipe_Aspect",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::out_previousState::13::17"
+    },
+    {
+      "variableId": "47693b0328034609a1f08b2a5ed2e6e2",
+      "variableName": "out_seq",
+      "dataType": "UInt32",
+      "assetId": "5a8bc69b1ebb47fb841ef163fb28fe3d",
+      "aspectId": "44f043cf940049b98a562155f8b97015",
+      "aspectName": "Recipe_Aspect",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::out_seq::13::7"
+    },
+    {
+      "variableId": "d8bcb386e49e476db341b6c62de14ed4",
+      "variableName": "in_ack",
+      "dataType": "UInt32",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_ack::13::6"
+    },
+    {
+      "variableId": "8445d46ac3c144aab7c7cf13155c7403",
+      "variableName": "in_hasTimeout",
+      "dataType": "Bool",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_hasTimeout::13::13"
+    },
+    {
+      "variableId": "318661077bb14c6f940cf2a39cc3c214",
+      "variableName": "in_operationIds",
+      "dataType": "String",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_operationIds::13::15"
+    },
+    {
+      "variableId": "1566ad7d80fe465b8941eb88aaed2aa7",
+      "variableName": "in_profileVacuumSetpoints",
+      "dataType": "Float",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_profileVacuumSetpoints::13::25"
+    },
+    {
+      "variableId": "c9fd1db3f97141978add98eccfad6a00",
+      "variableName": "in_executionGroupId",
+      "dataType": "String",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_executionGroupId::13::19"
+    },
+    {
+      "variableId": "bc7b7843332f4eb2ad609562b7c16016",
+      "variableName": "in_profilePressureSetpoints",
+      "dataType": "Float",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_profilePressureSetpoints::13::27"
+    },
+    {
+      "variableId": "25364c6e888b4d268b78ae3b3cac329c",
+      "variableName": "in_parentWorkOrders",
+      "dataType": "String",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_parentWorkOrders::13::19"
+    },
+    {
+      "variableId": "07048922d7b14521933f28478dfbacd9",
+      "variableName": "in_profileCriterias",
+      "dataType": "Int16",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_profileCriterias::13::19"
+    },
+    {
+      "variableId": "63c18e0c5f5f49a2a470cfdcb5bef776",
+      "variableName": "in_profileTemperatureGradients",
+      "dataType": "Float",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_profileTemperatureGradients::13::30"
+    },
+    {
+      "variableId": "0393e47f99794762830121f0ce4bd574",
+      "variableName": "in_seq",
+      "dataType": "UInt32",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_seq::13::6"
+    },
+    {
+      "variableId": "4a725a66973f417496fa5522a6bf2ecf",
+      "variableName": "in_serialNumbers",
+      "dataType": "String",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_serialNumbers::13::16"
+    },
+    {
+      "variableId": "8be2f797d711405dbb31e15d624472e5",
+      "variableName": "in_profilePressureGradients",
+      "dataType": "Float",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_profilePressureGradients::13::27"
+    },
+    {
+      "variableId": "3210af44a9854a77a01bae545208ddf1",
+      "variableName": "in_workOrderIds",
+      "dataType": "String",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_workOrderIds::13::15"
+    },
+    {
+      "variableId": "df3f33f3b37c4cb5aa4b5751941d8774",
+      "variableName": "in_profileTemperatureSetpoints",
+      "dataType": "Float",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_profileTemperatureSetpoints::13::30"
+    },
+    {
+      "variableId": "7bf2274241294ad3aaf75201421176c2",
+      "variableName": "in_profileTimes",
+      "dataType": "UInt32",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_profileTimes::13::15"
+    },
+    {
+      "variableId": "3756ce06c39144d887ddc5743bbe7e68",
+      "variableName": "in_profileNames",
+      "dataType": "String",
+      "assetId": "856602c43d364bfcb8680cb4ceba32f4",
+      "aspectId": "0a0c285786fd4751aa17b881e4e14832",
+      "aspectName": "Aspect_Recipe",
+      "unit": "",
+      "adapterId": "simaticadapter",
+      "topic": "PLC_Autoclave::in_profileNames::13::15"
+    }
+  ],
+  "aspectTypes": [],
+  "aspectTypeVariables": []
+}

@@ -1,0 +1,274 @@
+<TagList>
+  <WebClient>
+   <CommandName>/WinCCRestService/TagManagement/Values</CommandName>
+   <CommandMode>PUT</CommandMode>
+   <TemplateBody>{"OrderName": "${OrderName}", "Equipment": "${Equipment}", "PlannedStartTime": ${PlannedStartTime}, "PlannedEndTime": ${PlannedEndTime}}
+   </TemplateBody>
+   <AcknowledgeTag>NewOrder_ack</AcknowledgeTag>
+    <!-- subscribe only to this on startup -->
+    <SequenceTag>NewOrder_seq</SequenceTag>
+     <!-- read once at startup and count up with each message -->
+    <Tags>
+     <Tag>
+      <PlaceHolder>OrderName</PlaceHolder>
+      <Name>testText8</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>Equipment</PlaceHolder>
+	  <Name>testText16</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>PlannedStartTime</PlaceHolder>
+	  <Name>testSigned32</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>PlannedEndTime</PlaceHolder>
+	  <Name>testFloat64</Name>
+	 </Tag>
+	</Tags>
+  </WebClient>
+  <WebClient>
+   <CommandName>/WinCCRestService/TagManagement/Values2</CommandName>
+   <CommandMode>PUT</CommandMode>
+   <TemplateBody>{"OrderName": "${OrderName}", "TestBool": ${TestBool}}
+   </TemplateBody>
+    <Tags>
+     <Tag>
+      <PlaceHolder>OrderName</PlaceHolder>
+      <Name>testText8</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>TestBool</PlaceHolder>
+	  <Name>testBool</Name>
+	 </Tag>
+	</Tags>
+  </WebClient>
+  <WebClient>
+   <CommandName>/WinCCRestService/TagManagement/Order</CommandName> <!-- https://192.178.123.55:4233/WriteAutoclaveRecipe -->
+	<!-- @David: which authentification? -->
+   <CommandMode>POST</CommandMode>
+   <TemplateBody>{ 
+     "EquipmentId": "${EquipmentId}",
+     "OrderData": {"ExecutionGroupid": "${ExecutionGroupid}",
+        "ParentWorkOrderIds": ["${ParentWorkOrderIds[$i]}"],
+        "WorkOrderIds": ["${WorkOrderIds[$i]}"],
+        "OperationsIds": ["${OperationsIds[$i]}"],
+        "SerialNumbers": ["${SerialNumbers[$i]}"] }
+        }
+	</TemplateBody>
+	<!--{"EquipmentId": "Equipment_1","OrderData": {"ExecutionGroupid": "EXGR1","ParentWorkOrderIds": ["Order1","Order1","Order3"],"WorkOrderIds": ["WO1","WO2","WO3","WO4","WO5"],
+        "OperationsIds": ["OperationIdExample1","OperationIdExample2","OperationIdExample3"],"SerialNumbers": ["SN001","SN002","SN003"]	}}-->
+	<AnswerTemplateBody> <!-- result value: 200 is good -->
+	{
+		"errorCode": "number", <!-- if everything is good, errorCode is 0-->
+		"errorDescription": "string" <!-- if everything is good, errorDescription is empty -->
+	}
+	</AnswerTemplateBody>
+	<AcknowledgeTag>NewOrder_ack2</AcknowledgeTag> <!-- subscribe only to this on startup -->
+	<SequenceTag>NewOrder_seq2</SequenceTag> <!-- read once at startup and count up with each message -->
+	<Tags>
+		<Tag>
+			<PlaceHolder>EquipmentId</PlaceHolder>
+			<Name>Equipment</Name>
+		</Tag>
+		<Tag>
+			<PlaceHolder>ExecutionGroupid</PlaceHolder>
+			<Name>Execution</Name>
+		</Tag>
+		<Tag>
+			<PlaceHolder>ParentWorkOrderIds[$i]</PlaceHolder>
+			<Name>OrderIds[$i]</Name>
+		</Tag>
+		<Tag>
+			<PlaceHolder>WorkOrderIds[$i]</PlaceHolder>
+			<Name>WOIds[$i]</Name>
+		</Tag>
+		<Tag>
+			<PlaceHolder>OperationsIds[$i]</PlaceHolder>
+			<Name>Operations[$i]</Name>
+		</Tag>
+		<Tag>
+			<PlaceHolder>SerialNumbers[$i]</PlaceHolder>
+			<Name>SerialNumbers[$i]</Name>
+		</Tag>
+	</Tags>
+  </WebClient>
+  <WebClient>
+   <CommandName>/WinCCRestService/TagManagement/Order2</CommandName> <!-- https://192.178.123.55:4233/WriteAutoclaveRecipe -->
+	<!-- @David: which authentification? -->
+	<CommandMode>POST</CommandMode>
+	<TemplateBody>{ "EquipmentId": "${EquipmentId}","OrderData": {"ExecutionGroupid": "${ExecutionGroupid}",
+        "ParentWorkOrderIds": [{ "name": "${Ordername1}", "addition": { "addition2": { "name2": "${Ordername2}" }, "name3": "${Ordername3}"}}],
+        "WorkOrderIds": [{ "name": "${WOname1}", "addition": { "addition2": { "name2": "${WOname2}" }, "name3": "${WOname3}" } }],
+        "OperationsIds": ["${OperationsIds[$i]}"],
+        "SerialNumbers": ["${SerialNumbers[$i]}"]}}
+	</TemplateBody>
+	<!--{"EquipmentId": "Equipment_1", "OrderData": {"ExecutionGroupid": "EXGR1", "ParentWorkOrderIds": [{ "name": "Order1", "addition": { "addition2": { "name2": "run" }, "name3": "good" } } ,
+       { "name": "Order2", "addition": { "addition2": { "name2": "stop" }, "name3": "bad" } }],
+        "WorkOrderIds":[{ "name": "WO1", "addition": { "addition2": { "name2": "start" }, "name3": "good" } },
+       {"name": "WO2", "addition": { "addition2": { "name2": "end" }, "name3": "bad" } }],
+        "OperationsIds": ["OperationIdExample1","OperationIdExample2","OperationIdExample3"],
+        "SerialNumbers": ["SN001","SN002","SN003"]}-->
+	<AnswerTemplateBody> <!-- result value: 200 is good -->
+	{
+		"errorCode": "number", <!-- if everything is good, errorCode is 0-->
+		"errorDescription": "string" <!-- if everything is good, errorDescription is empty -->
+	}
+	</AnswerTemplateBody>
+	<AcknowledgeTag>NewOrder_ack3</AcknowledgeTag> <!-- subscribe only to this on startup -->
+	<SequenceTag>NewOrder_seq3</SequenceTag> <!-- read once at startup and count up with each message -->
+	<Tags>
+	 <Tag>
+	  <PlaceHolder>EquipmentId</PlaceHolder>
+	  <Name>Equipment</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>ExecutionGroupid</PlaceHolder>
+	  <Name>Execution</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>ParentWorkOrderIds[$i].name</PlaceHolder>
+	  <Name>Ordernames[$i]</Name>
+	 </Tag>
+     <Tag>
+	  <PlaceHolder>ParentWorkOrderIds[$i].addition.addition2.name2</PlaceHolder>
+	  <Name>Ordertags[$i]</Name>
+	 </Tag>
+     <Tag>
+	  <PlaceHolder>ParentWorkOrderIds[$i].addition.name3</PlaceHolder>
+	  <Name>Orderkeys[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>WorkOrderIds[$i].name</PlaceHolder>
+	  <Name>WOnames[$i]</Name>
+	 </Tag>
+    <Tag>
+			<PlaceHolder>WorkOrderIds[$i].addition.addition2.name2</PlaceHolder>
+			<Name>WOtags[$i]</Name>
+		</Tag>
+    <Tag>
+			<PlaceHolder>WorkOrderIds[$i].addition.name3</PlaceHolder>
+			<Name>WOkeys[$i]</Name>
+		</Tag>
+		<Tag>
+			<PlaceHolder>OperationsIds[$i]</PlaceHolder>
+			<Name>Operations[$i]</Name>
+		</Tag>
+		<Tag>
+			<PlaceHolder>SerialNumbers[$i]</PlaceHolder>
+			<Name>SerialNumbers[$i]</Name>
+		</Tag>
+	</Tags>
+  </WebClient>
+  <WebClient>
+	<CommandName>/WinCCRestService/TagManagement/Order3</CommandName>
+	<CommandMode>POST</CommandMode>
+	<TemplateBody>{"Variable_1": "${Variable_1}", "Variable_2": "${Variable_2}", "Variable_3": "${Variable_3}", "Variable_4": "${Variable_4}"}</TemplateBody>
+	<AcknowledgeTag>NewOrder_ack4</AcknowledgeTag> <!-- subscribe only to this on startup -->
+	<SequenceTag>NewOrder_seq4</SequenceTag> <!-- read once at startup and count up with each message -->
+	<Tags>
+	 <Tag>
+	  <PlaceHolder>Variable_1</PlaceHolder>
+	  <Name>out_currentState</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>Variable_2</PlaceHolder>
+	  <Name>out_previousState</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>Variable_3</PlaceHolder>
+	  <Name>out_seq</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>Variable_4</PlaceHolder>
+	  <Name>in_workOrderIds</Name>
+	 </Tag>
+	</Tags>
+  </WebClient>
+  <WebClient>
+	<CommandName>/WinCCRestService/TagManagement/Values</CommandName>
+	<CommandMode>POST</CommandMode>
+	<TemplateBody>{"EquipmentId": "${EquipmentId}",
+					"OrderData": {
+					"ExecutionGroupId": "${ExecutionGroupId}",
+					"ParentWorkOrderIds": ["${ParentWorkOrderIds[$i]}"],
+					"WorkOrderIds": ["${WorkOrderIds[$i]}"],
+					"OperationIds": ["${OperationIds[$i]}"],
+					"SerialNumbers": ["${SerialNumbers[$i]}"]},
+					"RecipeData": {
+					"Names": ["${Names[$i]}"],
+					"Criterias": ["${Criterias[$i]}"],
+					"TemperatureSetpoint": ["${TemperatureSetpoint[$i]}"],
+					"TemperatureGradient": ["${TemperatureGradient[$i]}"],
+					"PressureSetpoint": ["${PressureSetpoint[$i]}"],
+					"PressureGradient": ["${PressureGradient[$i]}"],
+					"VacuumSetpoint": ["${VacuumSetpoint[$i]}"],
+					"VacuumGradient": ["${VacuumGradient[$i]}"],
+					"ProfileTimes": ["${ProfileTimes[$i]}"]}}
+	</TemplateBody>
+	<AcknowledgeTag>NewOrder_ack5</AcknowledgeTag> <!-- subscribe only to this on startup -->
+	<SequenceTag>NewOrder_seq5</SequenceTag> <!-- read once at startup and count up with each message -->
+	<Tags>
+	 <Tag>
+	  <PlaceHolder>EquipmentId</PlaceHolder>
+	  <Name>Equipment</Name>
+	 </Tag>	
+	 <Tag>
+	  <PlaceHolder>ExecutionGroupId</PlaceHolder>
+	  <Name>Execution</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>ParentWorkOrderIds[$i]</PlaceHolder>
+	  <Name>OrderIds[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>WorkOrderIds[$i]</PlaceHolder>
+	  <Name>WOIds[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>OperationIds[$i]</PlaceHolder>
+	  <Name>Operations[$i]</Name>
+     </Tag>
+	 <Tag>
+	  <PlaceHolder>SerialNumbers[$i]</PlaceHolder>
+	  <Name>SerialNumbers[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>Names[$i]</PlaceHolder>
+	  <Name>Name[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>Criterias[$i]</PlaceHolder>
+	  <Name>Criteria[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>TemperatureSetpoint[$i]</PlaceHolder>
+	  <Name>TemperatureSetpoint[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>TemperatureGradient[$i]</PlaceHolder>
+	  <Name>TemperatureGradient[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>PressureSetpoint[$i]</PlaceHolder>
+	  <Name>PressureSetpoint[$i]</Name>
+	 </Tag>
+	 <Tag>
+ 	  <PlaceHolder>PressureGradient[$i]</PlaceHolder>
+	  <Name>PressureGradient[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>VacuumSetpoint[$i]</PlaceHolder>
+	  <Name>VacuumSetpoint[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>VacuumGradient[$i]</PlaceHolder>
+	  <Name>VacuumGradient[$i]</Name>
+	 </Tag>
+	 <Tag>
+	  <PlaceHolder>ProfileTimes[$i]</PlaceHolder>
+	  <Name>ProfileTime[$i]</Name>
+	 </Tag>
+	 </Tags>
+  </WebClient>
+</TagList>

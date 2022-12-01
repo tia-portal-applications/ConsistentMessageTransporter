@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<TagList>
+<WebClient>
+    <CertificateID>.\certificate\</CertificateID>
+    <Token> eyJhbGciOiJSUzI1NiIsImtpZCI6IkE5N0M5NzRGQTYwNkE0RDAyQUIyNDg5QjJFNzVEN0E4Mjc1NDkxRjIiLCJ4NXQiOiJxWHlYVDZZR3BOQXFza2liTG5YWHFDZFVrZkkiLCJ0eXAiOiJKV1QifQ.eyJ1bmlxdWVfbmFtZSI6Ik15UHJvamVjdE5hbWUiLCJjZXJ0dGh1bWJwcmludCI6IkE5N0M5NzRGQTYwNkE0RDAyQUIyNDg5QjJFNzVEN0E4Mjc1NDkxRjIiLCJ1cm46cmVhbG0iOiJ4LjUwOSIsIm5iZiI6MTY1NDUyMjkyOCwiZXhwIjo0ODEwMTk2ODI4LCJpYXQiOjE2NTQ1MjMyMjgsImlzcyI6InVybjp1bmlmaWVkb2F1dGgiLCJhdWQiOiJ1cm46dW5pZmllZCJ9.g5jTPu9QB1IcG5o7imVC_oaVnVUSTLGtJ2Qxaq4BJLZsY0s89Wqs-Ru5pd2kmnd-OuW1ryGsyTZOIMKXGBQpphASmX1bZCPdK0kca_FuiHcBIEtuoSET7exDB8XquFz8tetqwAYPjJwSWkSzon-lgsonFFE-WJ_oSZ0v0PWxgoNtJZP8dMvRQdpqfcT4RukI-gj6ncGNeCw64dmmcZJs8PEctF67GHshIrLRz5uDXEHh66WJwPkxOIQP0Ww0DNYhLg0l6mkJiVIGFK66WSMpYfT1YhTs8nWfcnO1f4B-0NS-x9H2P8nzjJa9_CjQGX7BDzFAlWiHp_Ek63Z4sxjRLg</Token>
+    <CommandName>https://10.20.230.21:443/sit-svc/Application/AppU4DM/odata/DVLApp_WriteWinCCTag/</CommandName>
+    <CommandMode>POST</CommandMode>
+    <TemplateBody>{"command":{"TagName":"Status_seq","TagValue":"${Status_seq}"}}</TemplateBody>
+    <Tags>      
+      <Tag>
+        <PlaceHolder>OderId</PlaceHolder>
+        <Name>out_operationIds</Name>
+      </Tag>
+      <Tag>
+        <Trigger>Onchange</Trigger>
+        <PlaceHolder>Status</PlaceHolder>
+        <Name>out_currentState</Name>
+        <Filter>&gt;100</Filter>
+      </Tag>
+      <Tag>
+        <PlaceHolder>Status_seq</PlaceHolder>
+        <Name>out_previousState</Name> 
+      </Tag>
+      <Tag>
+      <AcknowledgeTag>out_currentState</AcknowledgeTag>
+      <Name>in_ack</Name>
+      </Tag>
+    </Tags>
+</WebClient>
+<WebClient>
+    <CertificateID>.\certificate\</CertificateID>
+    <CommandName>https://10.120.6.55:8080/api/tags/JobStatusChange</CommandName>
+    <CommandMode>PUT</CommandMode>
+    <TemplateBody>{"Tags": [{ "OrderId_Op": "${OrderId}", "Status_Op": "${Status}"}]}</TemplateBody>
+    <Tags>
+      <Tag>
+        <PlaceHolder>OrderId</PlaceHolder>
+        <Name>in_workOrderIds</Name>
+      </Tag>
+      <Tag>
+        <Trigger>Onchange</Trigger>
+        <PlaceHolder>Status</PlaceHolder>
+        <Name>out_currentState</Name>
+      </Tag>
+      <Tag>
+        <PlaceHolder>Status_seq</PlaceHolder>
+        <Name>out_seq</Name> 
+      </Tag>
+      <Tag>
+      <AcknowledgeTag>out_currentState</AcknowledgeTag>
+      <Name>in_ack</Name>
+      </Tag>
+    </Tags>
+</WebClient>
+<WebClient>
+    <CertificateID>.\certificate\</CertificateID>
+    <CommandName>https://10.120.6.55:8080/api/tags/RequestNextOrder</CommandName>
+    <CommandMode>POST</CommandMode>
+    <TemplateBody>
+    {
+		"Material_Op": "${Status}",
+		"MaterialBatchId_Op": "${Status_seq}"
+    }
+    </TemplateBody>
+    <ReturnTemplateBody>
+    {
+    "OrderId_Op":"${OrderId}",
+		"SerialNumbers_Op": "${SerialNumbers}"
+    }
+    </ReturnTemplateBody>
+    <Tags>
+      <Tag>
+        <PlaceHolder>Status_seq</PlaceHolder>
+        <Name>out_seq</Name> 
+      </Tag>
+      <Tag>
+        <PlaceHolder>OrderId</PlaceHolder>
+        <Name>in_workOrderIds</Name>
+      </Tag>
+      <Tag>
+        <PlaceHolder>SerialNumbers</PlaceHolder>
+        <Name>in_serialNumbers</Name>
+      </Tag>
+      <Tag>
+        <Trigger>Onchange</Trigger>
+        <PlaceHolder>Status</PlaceHolder>
+        <Name>out_currentState</Name>
+      </Tag>
+       <Tag>
+      <AcknowledgeTag>out_currentState</AcknowledgeTag>
+      <Name>in_ack</Name>
+      </Tag>
+    </Tags>
+</WebClient>
+</TagList>

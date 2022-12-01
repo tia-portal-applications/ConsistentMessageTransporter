@@ -1,0 +1,9 @@
+pushd %~dp0\src\certificate
+
+openssl req -x509 -nodes -days 36500 -newkey rsa:2048 -keyout key.pem -out cert.pem -config san.cnf
+
+openssl rsa -in key.pem -out server.key
+
+openssl x509 -in cert.pem -out server.crt
+
+openssl pkcs12 -export -out server_cert.pfx -inkey server.key -in server.crt
