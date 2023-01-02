@@ -25,7 +25,7 @@ The `binding.gyp` file contains information about the sources, includes and libr
 ***   
 
  ## Generation of certificates
-Before running the server, you needd to generate the certificates as it is explained in the file inside the "docs" folder.
+Before running the server, you needd to generate the certificates as it is explained in the documentation file inside the "docs" folder.
 *** 
  ## Run `Server.js` and connect to WinCC V7.5 
 1. Run Wincc ODK Runtime and make sure the tagnames of  `Name`column in `WinccTagConfiguration.xml` are all existed in WinCC.  
