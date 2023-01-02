@@ -23,6 +23,10 @@ The `binding.gyp` file contains information about the sources, includes and libr
  1. Open `index.js`, type `node index.js` in Terminal or Windows cmd to see  whether ODK functions works in JavaScript or not.   
  **In `index.js`,ODK connetion,read,write and Subscribe functions can be tested one by one.**     
 ***   
+
+ ## Generation of certificates
+Before running the server, you needd to generate the certificates as it is explained in the file inside the "docs" folder.
+
  ## Run `Server.js` and connect to WinCC V7.5 
 1. Run Wincc ODK Runtime and make sure the tagnames of  `Name`column in `WinccTagConfiguration.xml` are all existed in WinCC.  
 2. type `node Server.js  --southboundservice=classic --serverconfig=WinccTagConfiguration.xml --clientconfig=wincc2opcenter --log=verbose` in Terminal or Windows cmd to start up the Server connect to WinCC V7.5.    
